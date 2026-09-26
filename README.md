@@ -37,16 +37,16 @@
 
 ## 机子侧接入（一条命令）
 
-在目标机终端执行（RELAY_URL 向管理员要，格式 `ws://中转IP:端口/tunnel?token=xxx`）：
+在目标机终端执行（RELAY_URL 向管理员要，格式 `ws://中转IP:端口/tunnel?token=xxx`）。国内平台实测 gh-proxy 最稳，作为首选：
 
 ```bash
-bash <(curl -fsSL https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/bootstrap.sh) "RELAY_URL放这里"
+bash <(curl -fsSL -m 15 https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/bootstrap.sh) "RELAY_URL放这里"
 ```
 
-jsDelivr 不可用时自动降级版：
+gh-proxy 不可用时自动降级版（jsDelivr → raw）：
 
 ```bash
-curl -fsSL https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/bootstrap.sh -o bootstrap.sh 2>/dev/null || curl -fsSL https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/bootstrap.sh -o bootstrap.sh 2>/dev/null || curl -fsSL https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/bootstrap.sh -o bootstrap.sh
+curl -fsSL -m 15 https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/bootstrap.sh -o bootstrap.sh 2>/dev/null || curl -fsSL -m 15 https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/bootstrap.sh -o bootstrap.sh 2>/dev/null || curl -fsSL -m 15 https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/bootstrap.sh -o bootstrap.sh
 bash bootstrap.sh "RELAY_URL放这里"
 ```
 

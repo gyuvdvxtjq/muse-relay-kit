@@ -41,9 +41,9 @@ pgrep -x sshd >/dev/null || /usr/sbin/sshd
 echo '[3/4] 拨入端（零依赖客户端，无 npm）...'
 mkdir -p /opt/muse-dial
 cd /opt/muse-dial
-curl -fsSL "https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/muse-dial-lean.js" -o muse-dial.js 2>/dev/null \
-  || curl -fsSL "https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/muse-dial-lean.js" -o muse-dial.js 2>/dev/null \
-  || curl -fsSL "https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/muse-dial-lean.js" -o muse-dial.js \
+curl -fsSL -m 10 "https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/muse-dial-lean.js" -o muse-dial.js 2>/dev/null \
+  || curl -fsSL -m 10 "https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/muse-dial-lean.js" -o muse-dial.js 2>/dev/null \
+  || curl -fsSL -m 10 "https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/muse-dial-lean.js" -o muse-dial.js \
   || { [ -s muse-dial.js ] && echo 'WARN: 拉取失败,沿用本地已有 muse-dial.js' || { echo '拉取失败且无本地副本'; exit 1; }; }
 
 echo '[4/4] 启动拨入...'

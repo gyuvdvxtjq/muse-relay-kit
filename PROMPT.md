@@ -5,7 +5,8 @@
 把下面这段发给帮你部署的 AI，替换 `<RELAY_URL>`：
 
 ```
-读取 https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/README.md 和 bootstrap.sh，
+读取 https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/README.md 和 bootstrap.sh
+（拉不动再加试 https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/ 同名文件），
 按它们的逻辑给我一条可整段粘贴到本机 root 终端的接入命令。中转地址：<RELAY_URL>
 要求：
 - 幂等可重复执行，主要步骤用 ; 分隔
