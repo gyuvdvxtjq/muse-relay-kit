@@ -21,10 +21,11 @@
 
 | 文件 | 用途 | 放哪 |
 |---|---|---|
-| `bootstrap.sh` | 机子侧一键拨入（装 SSH+Node+启动隧道） | 目标机终端粘贴/执行 |
-| `muse-dial.js` | 拨入端程序（bootstrap 会自动写入，此文件为源码备份） | 目标机 |
+| `bootstrap.sh` | 机子侧一键拨入（装 SSH+Node+启动隧道，幂等，apt/dnf/yum/apk 兼容，零 npm 依赖） | 目标机终端粘贴/执行 |
+| `muse-dial-lean.js` | 拨入端程序（零依赖，node 标准库实现 WebSocket；bootstrap 自动拉取，此为源码） | 目标机 |
+| `muse-dial.js` | 旧版拨入端（依赖 npm ws，仅作备份，新部署勿用） | 目标机 |
 | `relay/` | 中转服务端（单端口分流 SSH/Web 终端） | 公网容器（如 Katabump） |
-| `PROMPT.md` | 给任意 AI Agent 的接入提示词模板 | 发给 AI |
+| `PROMPT.md` | 给任意 AI Agent 的接入提示词模板（不含机密） | 发给 AI |
 
 ## 拉取地址（三链自动降级，国内优先）
 
@@ -75,5 +76,6 @@ http://<中转IP>:<端口>/?token=<PAGE_TOKEN>
 
 1. RELAY_URL / token 不进任何公开仓库、不发给不可信方
 2. 每把密钥对应一个使用者，撤销 = 删 authorized_keys 对应行
-3. 中转容器若为免费档，注意续期周期（如 Katabump 4 天）
-4. Web 终端为明文 HTTP，勿在公共网络输入敏感内容
+3. 机子仅密钥登录（bootstrap 已强制 PermitRootLogin prohibit-password + 禁用密码），勿在机子上设密码
+4. 中转容器若为免费档，注意续期周期（如 Katabump 4 天）
+5. Web 终端为明文 HTTP，勿在公共网络输入敏感内容
