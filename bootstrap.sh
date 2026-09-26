@@ -17,7 +17,7 @@ sed -i 's/#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 echo '[2/3] 拨入端...'
 cd /opt/muse-dial
-curl -fsSL https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/main/muse-dial.js -o muse-dial.js || echo 'WARN: 拉取失败,沿用本地已有 muse-dial.js'
+curl -fsSL https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/muse-dial.js -o muse-dial.js || echo 'WARN: 拉取失败,沿用本地已有 muse-dial.js'
 npm config set registry https://registry.npmmirror.com > /dev/null 2>&1
 [ -d node_modules ] || npm i ws --silent > /dev/null 2>&1
 

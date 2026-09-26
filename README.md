@@ -26,18 +26,26 @@
 | `relay/` | 中转服务端（单端口分流 SSH/Web 终端） | 公网容器（如 Katabump） |
 | `PROMPT.md` | 给任意 AI Agent 的接入提示词模板 | 发给 AI |
 
+## 拉取地址（三链自动降级，国内优先）
+
+| 源 | URL 前缀 | 国内可达 |
+|---|---|---|
+| jsDelivr CDN | `https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/` | ✅ 推荐 |
+| gh-proxy 加速 | `https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/` | ✅ |
+| GitHub raw | `https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/` | ❌ 需科学上网 |
+
 ## 机子侧接入（一条命令）
 
 在目标机终端执行（RELAY_URL 向管理员要，格式 `ws://中转IP:端口/tunnel?token=xxx`）：
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/main/bootstrap.sh) "RELAY_URL放这里"
+bash <(curl -fsSL https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/bootstrap.sh) "RELAY_URL放这里"
 ```
 
-或分步：
+jsDelivr 不可用时自动降级版：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/main/bootstrap.sh -o bootstrap.sh
+curl -fsSL https://cdn.jsdelivr.net/gh/gyuvdvxtjq/muse-relay-kit@master/bootstrap.sh -o bootstrap.sh 2>/dev/null || curl -fsSL https://gh-proxy.com/https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/bootstrap.sh -o bootstrap.sh 2>/dev/null || curl -fsSL https://raw.githubusercontent.com/gyuvdvxtjq/muse-relay-kit/master/bootstrap.sh -o bootstrap.sh
 bash bootstrap.sh "RELAY_URL放这里"
 ```
 
